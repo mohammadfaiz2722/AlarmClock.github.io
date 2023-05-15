@@ -86,9 +86,10 @@ $(document).ready(() => {
                     }, 100)
                     setTimeout(() => {
                         clearInterval(x)
-                        $('#wrapper2').fadeOut(1000);
+                        $('#wrapper2').text().fadeOut(1000);
+                        // console.log( $('#wrapper2').text());
 
-                }, 10000)
+                }, 100000)
                 clearInterval(y);
             }
 
@@ -101,8 +102,8 @@ $(document).ready(() => {
                 }, 100)
                 setTimeout(() => {
                     clearInterval(x)
-                    $('#wrapper2').fadeOut(1000);
-                }, 10000)
+                    $('#wrapper2').text().fadeOut(1000);
+                }, 100000)
                 clearInterval(y);
             }
         }
