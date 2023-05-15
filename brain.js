@@ -49,7 +49,7 @@ $(document).ready(() => {
             else {
                 zone = "AM"
             }
-            console.log(meridian.value);
+
             let currentTime;
             let currentMinute;
             if (hourInput.value > 12) {
@@ -74,35 +74,43 @@ $(document).ready(() => {
 
     function ring(audio, hourVal, minutaVal, meridian) {
         let x;
-        console.log(time.getHours(), Number(hourVal) + 12);
-        if (zone == "PM") {
+        let y=setInterval(()=>{
 
-            if (time.getMinutes() == minutaVal && time.getHours() == Number(hourVal) + 12 && meridian == zone) {
-                x = setInterval(() => {
-                    audio.play();
+            console.log(minutaVal);
+            if (zone == "PM") {
 
-                }, 100)
-                setTimeout(() => {
-                    clearInterval(x)
-                    $('#wrapper2').fadeOut(1000);
+                if (time.getMinutes() == minutaVal && time.getHours() == Number(hourVal) + 12 && meridian == zone) {
+                    x = setInterval(() => {
+                        audio.play();
+                        
+                    }, 100)
+                    setTimeout(() => {
+                        clearInterval(x)
+                        $('#wrapper2').fadeOut(1000);
+
                 }, 10000)
+                clearInterval(y);
             }
+
         }
         else {
             if (time.getMinutes() == minutaVal && time.getHours() == Number(hourVal) && meridian == zone) {
                 x = setInterval(() => {
                     audio.play();
-
+                    
                 }, 100)
                 setTimeout(() => {
                     clearInterval(x)
                     $('#wrapper2').fadeOut(1000);
                 }, 10000)
+                clearInterval(y);
             }
         }
         $('#set2').click(() => {
             clearInterval(x)
             $('h1').fadeOut(1000);
+            clearInterval(y);
         });
+    },1000)
     }
 })
